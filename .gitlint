@@ -1,0 +1,22 @@
+[general]
+verbosity = 2
+ignore = body-is-missing
+contrib = contrib-title-conventional-commits
+
+[title-must-not-contain-word]
+words = wip,hack,todo,temp,tmp,ticket,quick,again,fixme
+
+[title-match-regex]
+regex = ^[a-zA-Z0-9: \-_.']+$
+
+[title-max-length]
+line-length = 80
+
+[body-max-line-length]
+line-length = 120
+
+[body-min-length]
+min-length = 10
+
+[contrib-title-conventional-commits]
+types = add,fix,hotfix,bugfix,feature,feat,improvement,improv,documentation,docs,ci,revert,rollback,refactor,chore,test,tests

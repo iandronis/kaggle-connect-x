@@ -1,5 +1,5 @@
 [tool.black]
-line-length = 88
+line-length = 80
 target-version = ['py38']
 include = '\.pyi?$'
 extend-exclude = '''
@@ -7,3 +7,12 @@ extend-exclude = '''
   | venv
 )/
 '''
+
+[tool.isort]
+ensure_newline_before_comments = true
+combine_star = true
+float_to_top = true
+include_trailing_comma = true
+line_length = 80
+multi_line_output = 3
+use_parentheses = true

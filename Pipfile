@@ -5,9 +5,13 @@
 
 [packages]
 kaggle_environments = "*"
+requests = "*"
+numpy="*"
+gitlint = "*"
 
 [dev-packages]
 black = "==20.8b0"
 flake8 = "==3.9.0"
 isort = "*"
 pre-commit = "*"
+ipython = "*"
