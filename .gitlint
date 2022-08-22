@@ -19,4 +19,4 @@ line-length = 120
 min-length = 10
 
 [contrib-title-conventional-commits]
-types = add,fix,hotfix,bugfix,feature,feat,improvement,improv,documentation,docs,ci,revert,rollback,refactor,chore,test,tests
+types = add,fix,hotfix,bugfix,feature,feat,improvement,improv,documentation,docs,release,ci,revert,rollback,refactor,chore,test,tests
