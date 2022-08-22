@@ -1,0 +1,73 @@
+site_name: Connect X (Kaggle competition)
+site_description: Connect X competition
+site_author: Ioannis Andronis
+site_url: https://iandronis.github.io/kaggle-connect-x
+
+repo_name: iandronis/kaggle-connect-x
+repo_url: https://github.com/iandronis/kaggle-connect-x
+
+docs_dir: ./mkdocs
+edit_uri: ""
+
+nav:
+  - Home:
+    - Introduction: index.md
+    - Markdown Examples: markdown_examples.md
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: teal
+      toggle:
+        name: Switch to dark mode
+        icon: material/toggle-switch-off-outline
+    - scheme: slate
+      primary: teal
+      toggle:
+        name: Switch to light mode
+        icon: material/toggle-switch
+  language: en
+  logo: assets/favicon-logo.png
+  favicon: assets/favicon-logo.png
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.top
+    - search.suggest
+
+markdown_extensions:
+    - admonition
+    - def_list
+    - pymdownx.caret
+    - pymdownx.critic
+    - pymdownx.details
+    - pymdownx.emoji
+    - pymdownx.extra
+    - pymdownx.magiclink
+    - pymdownx.mark
+    - pymdownx.smartsymbols
+    - pymdownx.superfences
+    - pymdownx.tilde
+    - pymdownx.tabbed:
+        alternate_style: true
+    - pymdownx.highlight:
+        linenums: false
+    - pymdownx.snippets:
+        base_path: ./
+    - smarty
+    - codehilite:
+        linenums: true
+        guess_lang: false
+    - pymdownx.snippets:
+        base_path: ./
+    - toc:
+        permalink: ↗
+        permalink_title:
+        toc_depth: 2
+
+plugins:
+  - minify:
+      minify_html: true
+  - search
