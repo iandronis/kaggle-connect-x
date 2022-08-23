@@ -18,12 +18,12 @@ theme:
   name: material
   palette:
     - scheme: default
-      primary: teal
+      primary: indigo
       toggle:
         name: Switch to dark mode
         icon: material/toggle-switch-off-outline
     - scheme: slate
-      primary: teal
+      primary: indigo
       toggle:
         name: Switch to light mode
         icon: material/toggle-switch

@@ -1,12 +1,12 @@
-# Connect X (Kaggle competition)
+# Introduction
 
 With this repo, I take part for the Kaggle competition called [Connect X].
 
 ## What is Connect X?
 
 Connect X is a simple two players board game. Each player has one color of
-checkers and in front of them they have a board of #number_of_columns and
-#number_of_rows.
+checkers and in front of them they have a board of #number_of_columns and #number_of_rows.
+
 In each turn, the player throws a checker and his/her goal is to form a line
 with them (horizontally, vertically, diagonally) . The length of this line would
 be X, hence the name of "Connect X". So for example, in [Connect 4] you must
