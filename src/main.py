@@ -5,14 +5,18 @@ from src import agents
 from src.utils import render_game
 
 
-def play_game(agent1, agent2, environment, configuration):
+def play_game(agent1, agent2, environment, configuration=None):
     env = make(environment=environment, configuration=configuration, debug=True)
     env.run([agent1, agent2])
     render_game(env)
 
 
 def get_win_rate(
-    agent1, agent2, environment: str, configuration={}, episodes=100
+    agent1,
+    agent2,
+    environment: str,
+    configuration: dict = None,
+    episodes: int = 100,
 ):
     rewards = evaluate(
         environment=environment,
@@ -45,12 +49,9 @@ def get_win_rate(
     print(f"Agent 2 Invalid games: {agent_2_invalid_games}")
 
 
-def main():
+if __name__ == "__main__":
     get_win_rate(
-        agent1=agents.agent_random_check_winning_move,
-        agent2=agents.agent_leftmost,
+        agent1=agents.agent_random,
+        agent2=agents.agent_middle,
         environment="connectx",
     )
-
-
-main()

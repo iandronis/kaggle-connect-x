@@ -6,9 +6,9 @@ def render_game(env):
     """
     Render into a relative html file and save it to play later.
     """
-    my_html_file = env.render(mode="html")
-    with open("my_html_file.html", "w") as file:
-        file.write(my_html_file)
+    rendered_game_html = env.render(mode="html")
+    with open("rendered_game.html", "w") as file:
+        file.write(rendered_game_html)
 
 
 def convert_board_1d_to_2d(board: list[int], config) -> np.ndarray:

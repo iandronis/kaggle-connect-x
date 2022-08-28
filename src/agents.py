@@ -15,6 +15,9 @@ def agent_random(obs, config):
 
 
 def agent_middle(obs, config):
+    """
+    Note. This might give some invalid moves.
+    """
     return config.columns // 2
 
 
