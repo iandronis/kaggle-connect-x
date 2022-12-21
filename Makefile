@@ -1,13 +1,12 @@
 SOURCE_PATH=./src
 
-.PHONY: install_generate_mkdocs isort black flake8 reformat
+.PHONY: install_mkdocs_depend isort black flake8 reformat
 
-install_generate_mkdocs:
+install_mkdocs_depend:
 	pip install mkdocs
 	pip install mkdocs-git-revision-date-plugin
 	pip install mkdocs-material
 	pip install mkdocs-minify-plugin
-	mkdocs build -d ./docs
 
 isort:
 	isort --verbose ${SOURCE_PATH}
