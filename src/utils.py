@@ -1,11 +1,9 @@
 import numpy as np
-from kaggle_environments import InvalidArgument
+
+from src.errors import InvalidMoveException
 
 
 def render_game(env):
-    """
-    Render into a relative html file and save it to play later.
-    """
     rendered_game_html = env.render(mode="html")
     with open("rendered_game.html", "w") as file:
         file.write(rendered_game_html)
@@ -16,19 +14,15 @@ def convert_board_1d_to_2d(board: list[int], config) -> np.ndarray:
 
 
 def play_piece(board: np.ndarray, config, col: int, piece: int) -> np.ndarray:
-    invalid_move = True
+    if col not in range(config.columns):
+        raise InvalidMoveException("Invalid move detected")
 
-    next_board = board.copy()
     for row in range(config.rows - 1, -1, -1):
-        if next_board[row][col] == 0:
-            invalid_move = False
-            break
+        if board[row][col] == 0:
+            board[row][col] = piece
+            return board
 
-    if invalid_move:
-        raise InvalidArgument("Invalid move detected.")
-
-    next_board[row][col] = piece
-    return next_board
+    raise InvalidMoveException("Invalid move detected")
 
 
 def _check_board(board: np.ndarray, config, piece: int) -> bool:
@@ -70,16 +64,19 @@ def _check_board(board: np.ndarray, config, piece: int) -> bool:
 
 
 def check_winning_move(board: np.ndarray, config, col: int, piece: int) -> bool:
-    next_board = play_piece(board, config, col, piece)
+    next_board = board.copy()
+    play_piece(next_board, config, col, piece)
     return _check_board(next_board, config, piece)
 
 
 def check_losing_move(
     board: np.ndarray, config, col: int, piece: int, opponent_piece: int
 ) -> bool:
-    next_board = play_piece(board, config, col, piece)
+    next_board = board.copy()
+    play_piece(next_board, config, col, piece)
+
     opponent_valid_moves = [
-        col for col in range(config.columns) if next_board[0][col] == 0
+        col for col in range(config.columns) if 0 in next_board[:][col]
     ]
     for opponent_move in opponent_valid_moves:
         if check_winning_move(
