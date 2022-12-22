@@ -1,6 +1,6 @@
 SOURCE_PATH=./src
 
-.PHONY: install_mkdocs_depend isort black flake8 reformat
+.PHONY: install_mkdocs_depend isort black reformat
 
 install_mkdocs_depend:
 	pip install mkdocs
@@ -14,7 +14,4 @@ isort:
 black:
 	black --verbose ${SOURCE_PATH}
 
-flake8:
-	flake8 --verbose ${SOURCE_PATH}
-
-reformat: isort black flake8
+reformat: isort black
