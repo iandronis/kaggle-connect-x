@@ -25,42 +25,67 @@ def play_piece(board: np.ndarray, config, col: int, piece: int) -> np.ndarray:
     raise InvalidMoveException("Invalid move detected")
 
 
-def _check_board(board: np.ndarray, config, piece: int) -> bool:
+def _discs_in_row_numb(
+    board: np.ndarray,
+    config,
+    piece: int,
+    discs_in_row: int,
+    fast_break: bool = False,
+) -> int:
+    discs_in_row_numb = 0
+
     # horizontal
     for row in range(config.rows):
-        for col in range(config.columns - (config.inarow - 1)):
-            window = list(board[row, col : col + config.inarow])
-            if window.count(piece) == config.inarow:
-                return True
+        for col in range(config.columns - (discs_in_row - 1)):
+            window = list(board[row, col : col + discs_in_row])
+            if window.count(piece) == discs_in_row:
+                if fast_break:
+                    return 1
+                discs_in_row_numb += 1
     # vertical
-    for row in range(config.rows - (config.inarow - 1)):
+    for row in range(config.rows - (discs_in_row - 1)):
         for col in range(config.columns):
-            window = list(board[row : row + config.inarow, col])
-            if window.count(piece) == config.inarow:
-                return True
+            window = list(board[row : row + discs_in_row, col])
+            if window.count(piece) == discs_in_row:
+                if fast_break:
+                    return 1
+                discs_in_row_numb += 1
     # positive diagonal
-    for row in range(config.rows - (config.inarow - 1)):
-        for col in range(config.columns - (config.inarow - 1)):
+    for row in range(config.rows - (discs_in_row - 1)):
+        for col in range(config.columns - (discs_in_row - 1)):
             window = list(
                 board[
-                    range(row, row + config.inarow),
-                    range(col, col + config.inarow),
+                    range(row, row + discs_in_row),
+                    range(col, col + discs_in_row),
                 ]
             )
-            if window.count(piece) == config.inarow:
-                return True
+            if window.count(piece) == discs_in_row:
+                if fast_break:
+                    return 1
+                discs_in_row_numb += 1
     # negative diagonal
-    for row in range(config.inarow - 1, config.rows):
-        for col in range(config.columns - (config.inarow - 1)):
+    for row in range(discs_in_row - 1, config.rows):
+        for col in range(config.columns - (discs_in_row - 1)):
             window = list(
                 board[
-                    range(row, row - config.inarow, -1),
-                    range(col, col + config.inarow),
+                    range(row, row - discs_in_row, -1),
+                    range(col, col + discs_in_row),
                 ]
             )
-            if window.count(piece) == config.inarow:
-                return True
-    return False
+            if window.count(piece) == discs_in_row:
+                if fast_break:
+                    return 1
+                discs_in_row_numb += 1
+    return discs_in_row_numb
+
+
+def _check_board(board: np.ndarray, config, piece: int) -> bool:
+    return (
+        _discs_in_row_numb(
+            board, config, piece, discs_in_row=config.inarow, fast_break=True
+        )
+        > 0
+    )
 
 
 def check_winning_move(board: np.ndarray, config, col: int, piece: int) -> bool:
