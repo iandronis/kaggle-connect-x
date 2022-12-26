@@ -20,14 +20,14 @@ def get_win_rate(
 ):
     rewards = list()
     for episode_numb in range(episodes // 2):
-        print(f"Episode {episode_numb}#")
+        print(f"Episode #{episode_numb+1}")
         rewards = evaluate(
             environment=environment,
             agents=[agent1, agent2],
             configuration=configuration,
         )
     for episode_numb in range(episodes - episodes // 2):
-        print(f"Episode {episode_numb  + episodes // 2}#")
+        print(f"Episode #{episode_numb+1  + episodes // 2}")
         rewards += [
             [b, a]
             for [a, b] in evaluate(
