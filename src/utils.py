@@ -109,3 +109,20 @@ def check_losing_move(
         ):
             return True
     return False
+
+
+def heuristic_function(board: np.ndarray, config, piece: int) -> int:
+    if _check_board(board, config, piece):
+        return 1000
+
+    board_score = 0
+
+    two_disks_in_row = _discs_in_row_numb(board, config, piece, discs_in_row=2)
+    board_score += two_disks_in_row * 5
+
+    three_disks_in_row = _discs_in_row_numb(
+        board, config, piece, discs_in_row=3
+    )
+    board_score += three_disks_in_row * 20
+
+    return board_score
