@@ -55,7 +55,7 @@ def get_win_rate(
 
 
 if __name__ == "__main__":
-    agent1 = agents.agent_random
+    agent1 = agents.agent_one_step_lookahead
     agent2 = agents.agent_random_prefer_winning_move
     episodes = 100
 
